@@ -15,7 +15,7 @@ function AddTodo(props) {
         props.setInput("");
       }}
     >
-      추가하기
+      ➕ add
     </button>
   );
 }
@@ -24,9 +24,39 @@ function MakeTodoList(props) {
   const todos = props.todos;
   const list = [];
   for (let i = 0; i < todos.length; i++) {
-    list.push(<li key={i}>{todos[i]}</li>);
+    list.push(
+      <li key={i}>
+        {todos[i]}{" "}
+        <DeleteTodo
+          index={i}
+          todos={props.todos}
+          setTodos={props.setTodos}
+        ></DeleteTodo>
+      </li>
+    );
   }
   return <ul>{list}</ul>;
+}
+
+//key를 보내서 배열에서 그걸 삭제하고
+function DeleteTodo(props) {
+  console.log("찍히는 키", props.index);
+  console.log("dddd", props.todos);
+  if (props.todos == null) {
+    return;
+  }
+  return (
+    <button
+      onClick={() => {
+        console.log("삭제할 항목:", props.index);
+        props.setTodos(props.todos.filter((_, i) => i !== props.index));
+        alert("삭제되었습니다!");
+        //props.onDelete(props.index); // 삭제 동작 호출
+      }}
+    >
+      🗑️
+    </button>
+  );
 }
 
 function App() {
@@ -40,6 +70,7 @@ function App() {
       <h1>Todo-List</h1>
       <input
         type="text"
+        //autoFocus
         placeholder="add todos..."
         value={input}
         onChange={(e) => {
@@ -51,8 +82,9 @@ function App() {
         setTodos={setTodos}
         input={input}
         setInput={setInput}
-      ></AddTodo>
-      <MakeTodoList todos={todos} setTodos={setTodos}></MakeTodoList>
+      />
+      <MakeTodoList todos={todos} setTodos={setTodos} />
+      <DeleteTodo />
     </div>
   );
 }
