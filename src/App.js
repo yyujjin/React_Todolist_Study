@@ -40,8 +40,6 @@ function MakeTodoList(props) {
 
 //key를 보내서 배열에서 그걸 삭제하고
 function DeleteTodo(props) {
-  console.log("찍히는 키", props.index);
-  console.log("dddd", props.todos);
   if (props.todos == null) {
     return;
   }
