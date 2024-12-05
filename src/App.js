@@ -61,7 +61,6 @@ function App() {
   //전역 변수로 쓸 건 여기다 쓰면 될듯
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
-  console.log(input);
 
   return (
     <div className="App">
