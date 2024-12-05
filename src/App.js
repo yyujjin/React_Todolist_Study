@@ -1,27 +1,17 @@
 import "./App.css";
 import { useState } from "react";
 
-function Header(props) {
-  console.log(props.todo);
-  //input
-
-  return;
-}
-function Body() {
-  //todo-list
-  return;
-}
-
 function AddTodo(props) {
-  //const [todos, setTodos] = useState([]);
-  //console.log("찍히고 있음", props.input);
   return (
     <button
       onClick={(e) => {
         e.preventDefault();
+        if (props.input.trim() === "") {
+          alert("할 일을 입력해주세요!");
+          return;
+        }
         alert("추가되었습니다!");
         props.setTodos([...props.todos, props.input]);
-        console.log("배열에 저장되고 있는 값", props.todos);
         props.setInput("");
       }}
     >
