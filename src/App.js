@@ -24,7 +24,7 @@ function MakeTodoList(props) {
   const todos = props.todos;
   const list = [];
   for (let i = 0; i < todos.length; i++) {
-    list.push(<li>{todos[i]}</li>);
+    list.push(<li key={i}>{todos[i]}</li>);
   }
   return <ul>{list}</ul>;
 }
