@@ -7,7 +7,6 @@ function App() {
   const addTodoAndResetInput = () => {
     setTodos([...todos, todo]);
     setTodo("");
-    console.log("배열 값 : ", todos);
   };
 
   return (
@@ -24,9 +23,8 @@ function App() {
         <button>delete</button>
         {/* <!-- update벙튼을 누르면 todo변수 값 옆에 todo1 -> todo1 - 완료 -->
       <!-- todo1 - 완료 이 상태에서 다시 업데이트를 누르면 하이픈 완료 글자가 사라짐  --> */}
-        <button>update</button>
       </div>
-      <List todos={todos} />
+      <List todos={todos} setTodos={setTodos} />
     </>
   );
 }
@@ -44,11 +42,18 @@ function AddTodo({ todo, setTodo, addTodoAndResetInput }) {
   );
 }
 
-//배열받아서 for 돌려서 만들기
-function List({ todos }) {
+function List({ todos, setTodos }) {
+  const updateTodoStatus = (index) => {
+    const newTodos = [...todos];
+    newTodos[index] = <s>{newTodos[index]}</s>; //취소선으로
+    setTodos(newTodos);
+  };
+
   const makeList = () => {
     return todos.map((todo, index) => (
-      <li key={index}>{todo}</li> // JSX 반환
+      <li key={index}>
+        {todo} <button onClick={() => updateTodoStatus(index)}>done</button>
+      </li>
     ));
   };
   return <ul>{makeList()}</ul>;
