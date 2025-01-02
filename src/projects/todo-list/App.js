@@ -7,6 +7,12 @@ function App() {
   //여기서 todo 넘어오면 그걸 객체로 그냥 저장시키자
   const addTodoAndResetInput = () => {
     //문자열 todo를 객체로 만들어서 todos의 배열에 저장시키기
+
+    if (todo === "") {
+      alert("todo를 입력해 주세요!");
+      return;
+    }
+
     function todoobject(todo, status) {
       //todo가 문자열아니거나 && status가 boolean아니면 빠꾸시키는거 추가하기
       return { todo: todo, status: status };
