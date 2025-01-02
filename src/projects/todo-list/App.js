@@ -20,16 +20,14 @@ function App() {
   return (
     <>
       <h1> 📝 Todo-List</h1>
-      <div>
-        <AddTodo
-          addTodoAndResetInput={addTodoAndResetInput}
-          todo={todo}
-          setTodo={setTodo}
-        />
-      </div>
-      <div>
-        <button>delete</button>
-      </div>
+
+      <AddTodo
+        addTodoAndResetInput={addTodoAndResetInput}
+        todo={todo}
+        setTodo={setTodo}
+      />
+      <DeleteButton setTodo={setTodo} />
+
       <List todos={todos} setTodos={setTodos} />
     </>
   );
@@ -69,6 +67,14 @@ function List({ todos, setTodos }) {
     ));
   };
   return <ul>{makeList()}</ul>;
+}
+
+function DeleteButton({ setTodo }) {
+  const reset = () => {
+    setTodo("");
+  };
+
+  return <button onClick={reset}>reset</button>;
 }
 
 export default App;
