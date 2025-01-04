@@ -1,7 +1,14 @@
 import UsersItem from "./UsersItem";
 import DeleteButton from "./DeleteButton";
 
-export default function UserList({ users, setUsers }) {
+export default function UserList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => setUsers(json));
+  }, []);
   return users.length > 0 ? (
     users.map((user) => (
       <li key={user.id}>

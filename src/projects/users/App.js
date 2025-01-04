@@ -7,20 +7,11 @@ import UserList from "./components/UserList";
 }
 
 function App() {
-  const [users, setUsers] = useState([]);
-
-  //근데 이 api 연동은 UserList 컴포넌트에서 해도 되는건가?
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => setUsers(json));
-  }, []);
-
   return (
     <>
       <h1>User List</h1>
       <ul>
-        <UserList users={users} setUsers={setUsers} />
+        <UserList />
       </ul>
     </>
   );
